@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CombinedService } from '../../services/combined.service';
 import { CombinedTodo } from '../../models/combined-todo';
-import { Observable } from 'rxjs/internal/Observable';
-import { map } from 'rxjs/internal/operators/map';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-completed-todos',
@@ -16,7 +16,7 @@ export class CompletedTodosComponent implements OnInit {
 
   ngOnInit(): void {
     this.completedTodos$ = this.combinedService.getCombinedTodos().pipe(
-      map(todos => todos.filter(todo => todo.completed))
+      map((todos: CombinedTodo[]) => todos.filter(todo => todo.completed))
     );
   }
 }
