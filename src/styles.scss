@@ -1,6 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
 body{
-  background-color: #17192B !important;;
+  background-color: #17192B !important;
+  height: 100vh;
+}
+ .wrapper{
+max-width: 800px;
+margin: 0 auto;
+height: 100%;
+}
+
+app-navbar, app-footer{
+width: -webkit-fill-available;
+    max-width: 800px;
+    flex-grow:1;
+}
+
+app-navbar{
+  position: fixed;
+  margin: 0;
+  top: 0;
+
+}
+
+.content-container{
+  background-color: white!important;
+  flex-grow: 5;
+  padding: 20px;
+  height: 100vh;
+  margin-top: 55px;
+}
+
+app-footer{
+  position: fixed;
+  bottom:4em;
+  height: 80px;
 }
 
 .completed-true {
@@ -8,5 +41,5 @@ body{
 }
 
 .completed-false {
-  background-color: #9E1946;
+  background-color: #E71D36ed;
 }
