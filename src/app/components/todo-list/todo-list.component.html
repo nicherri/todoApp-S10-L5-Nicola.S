@@ -1,9 +1,10 @@
 <input type="text" [(ngModel)]="searchTerm" placeholder="Search by author">
 
-<div *ngFor="let todo of filteredTodos()">
-  <div [ngClass]="{'completed': todo.completed}">
-    <input type="checkbox" [checked]="todo.completed" (change)="updateTodoStatus(todo.id, $event)">
-    <span>{{ todo.todo }}</span> - <strong>{{ todo.user.firstName }} {{ todo.user.lastName }}</strong>
+<div *ngIf="todos$ | async as todos">
+  <div *ngFor="let todo of getFilteredTodos(todos)">
+    <div [ngClass]="{'completed': todo.completed}">
+      <input type="checkbox" [checked]="todo.completed" (change)="updateTodoStatus(todo.id, $event)">
+      <span>{{ todo.todo }}</span> - <strong>{{ todo.user.firstName }} {{ todo.user.lastName }}</strong>
+    </div>
   </div>
 </div>
-

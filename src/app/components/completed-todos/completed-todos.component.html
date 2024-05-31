@@ -1,6 +1,5 @@
-<div *ngFor="let todo of completedTodos">
+<div *ngFor="let todo of completedTodos$ | async">
   <div class="completed">
     <span>{{ todo.todo }}</span> - <strong>{{ todo.user.firstName }} {{ todo.user.lastName }}</strong>
   </div>
 </div>
-

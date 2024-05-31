@@ -1,6 +1,7 @@
-import { ITodo } from './../../models/i-todo';
 import { Component, OnInit } from '@angular/core';
 import { CombinedService } from '../../services/combined.service';
+import { Observable } from 'rxjs';
+import { CombinedTodo } from '../../models/combined-todo';
 
 
 @Component({
@@ -9,32 +10,26 @@ import { CombinedService } from '../../services/combined.service';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent implements OnInit {
-  todos: any[] = [];
+  todos$: Observable<CombinedTodo[]> = new Observable<CombinedTodo[]>(); // Inizializzazione
   searchTerm: string = '';
 
   constructor(private combinedService: CombinedService) {}
 
   ngOnInit(): void {
-    this.todos = this.combinedService.getCombinedTodos();
+    this.todos$ = this.combinedService.getCombinedTodos();
   }
 
   updateTodoStatus(id: number, event: any): void {
     const status = event.target.checked;
-    this.todos = this.todos.map(todo => {
-      if (todo.id === id) {
-        todo.completed = status;
-      }
-      return todo;
-    });
+    this.combinedService.updateTodoStatus(id, status);
   }
 
-  filteredTodos(): any[] {
+  getFilteredTodos(todos: CombinedTodo[]): CombinedTodo[] {
     if (!this.searchTerm) {
-      return this.todos;
+      return todos;
     }
-    return this.todos.filter(todo => {
+    return todos.filter(todo => {
       return `${todo.user.firstName} ${todo.user.lastName}`.toLowerCase().includes(this.searchTerm.toLowerCase());
     });
   }
 }
-

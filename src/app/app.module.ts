@@ -6,10 +6,10 @@ import { AppComponent } from './app.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { CompletedTodosComponent } from './components/completed-todos/completed-todos.component';
 import { UserListComponent } from './components/user-list/user-list.component';
+import { NavbarComponent } from './components/navbar/navbar.component'; // Importa il componente navbar
 import { TodoService } from './services/todo.service';
 import { UserService } from './services/user.service';
 import { CombinedService } from './services/combined.service';
-import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     TodoListComponent,
     CompletedTodosComponent,
     UserListComponent,
-    NavbarComponent
+    NavbarComponent // Dichiara il componente navbar
   ],
   imports: [
     BrowserModule,

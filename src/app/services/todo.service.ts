@@ -1,10 +1,14 @@
 import { ITodo } from './../models/i-todo';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
+
+  private todosSubject = new BehaviorSubject<ITodo[]>([]);
+  todos$ = this.todosSubject.asObservable();
 
   // Array di oggetti todo, copiato dal file todos.json
   todos: ITodo[] = [
@@ -911,22 +915,23 @@ export class TodoService {
 
   ];
 
-  constructor() { }
-  // Metodo per ottenere tutti i todos
+  constructor() {
+    this.todosSubject.next(this.todos);
+  }
+
   getTodos(): ITodo[] {
     return this.todos;
   }
 
-  // Metodo per ottenere todos specifici di un userId
   getTodoByUserId(userId: number): ITodo[] {
     return this.todos.filter(todo => todo.userId === userId);
   }
 
-  // Metodo per aggiornare lo stato di un todo
   updateTodoStatus(id: number, status: boolean): void {
     const todo = this.todos.find(todo => todo.id === id);
     if (todo) {
       todo.completed = status;
+      this.todosSubject.next(this.todos);
     }
   }
 }

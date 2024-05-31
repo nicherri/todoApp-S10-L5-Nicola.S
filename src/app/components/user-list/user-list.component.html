@@ -1,7 +1,7 @@
 <div *ngFor="let user of users">
   <h3>{{ user.firstName }} {{ user.lastName }}</h3>
   <ul>
-    <li *ngFor="let todo of getTodosForUser(user.id)">
+    <li *ngFor="let todo of (getTodosForUser(user.id) | async)">
       {{ todo.todo }}
     </li>
   </ul>
