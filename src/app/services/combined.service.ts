@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { UserService } from './user.service';
 import { TodoService } from './todo.service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CombinedServiceService {
+export class CombinedService {
 
-  constructor(private todoService: TodoService, private userService: UserService) { }
-  getCombinedTodos() {
+  constructor(private todoService: TodoService, private userService: UserService) {}
+
+  getCombinedTodos(): any[] {
     const todos = this.todoService.getTodos();
     const users = this.userService.getUsers();
 
@@ -21,8 +22,7 @@ export class CombinedServiceService {
     });
   }
 
-  // Metodo per filtrare i todo combinati in base all'ID utente
-  getCombinedTodosByUserId(userId: number) {
+  getCombinedTodosByUserId(userId: number): any[] {
     return this.getCombinedTodos().filter(todo => todo.userId === userId);
   }
 }

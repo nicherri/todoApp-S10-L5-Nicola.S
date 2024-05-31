@@ -1,1 +1,8 @@
-<p>user-list works!</p>
+<div *ngFor="let user of users">
+  <h3>{{ user.firstName }} {{ user.lastName }}</h3>
+  <ul>
+    <li *ngFor="let todo of getTodosForUser(user.id)">
+      {{ todo.todo }}
+    </li>
+  </ul>
+</div>

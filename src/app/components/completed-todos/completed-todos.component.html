@@ -1,1 +1,6 @@
-<p>completed-todos works!</p>
+<div *ngFor="let todo of completedTodos">
+  <div class="completed">
+    <span>{{ todo.todo }}</span> - <strong>{{ todo.user.firstName }} {{ todo.user.lastName }}</strong>
+  </div>
+</div>
+
