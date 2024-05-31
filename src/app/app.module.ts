@@ -11,6 +11,7 @@ import { TodoService } from './services/todo.service';
 import { UserService } from './services/user.service';
 import { CombinedService } from './services/combined.service';
 import { PendingTodosComponent } from './components/pending-todos/pending-todos.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { PendingTodosComponent } from './components/pending-todos/pending-todos.
     CompletedTodosComponent,
     UserListComponent,
     NavbarComponent,
-    PendingTodosComponent // Dichiara il componente navbar
+    PendingTodosComponent,
+    FooterComponent // Dichiara il componente navbar
   ],
   imports: [
     BrowserModule,
