@@ -1,8 +1,12 @@
-<div *ngIf="todos$ | async as todos">
+<div *ngIf="todos$ | async as todos" id="sfondo" class="ms-4 me-3 ">
   <div *ngFor="let todo of todos" [ngClass]="{'completed-true': todo.completed, 'completed-false': !todo.completed}">
-    <div [ngClass]="{'completed': todo.completed}">
-      <input type="checkbox" [checked]="todo.completed" (change)="updateTodoStatus(todo.id, $event)">
-      <span>{{ todo.todo }}</span> - <strong>{{ todo.user.firstName }} {{ todo.user.lastName }}</strong>
+    <div [ngClass]="{'completed': todo.completed}" class="d-flex align-items-center ms-4 me-4 mt-3">
+      <div class="me-3"><input type="checkbox" [checked]="todo.completed" (change)="updateTodoStatus(todo.id, $event)"></div>
+      <div >
+        <p class="m-0">{{ todo.todo }}</p>
+        <p class="m-0"> - <strong>{{ todo.user.firstName }} {{ todo.user.lastName }}</strong></p>
+      </div>
+
     </div>
   </div>
 </div>
