@@ -5,18 +5,18 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-completed-todos',
-  templateUrl: './completed-todos.component.html',
-  styleUrls: ['./completed-todos.component.scss']
+  selector: 'app-pending-todos',
+  templateUrl: './pending-todos.component.html',
+  styleUrls: ['./pending-todos.component.scss']
 })
-export class CompletedTodosComponent implements OnInit {
-  completedTodos$: Observable<CombinedTodo[]> = new Observable<CombinedTodo[]>(); // Inizializzazione
+export class PendingTodosComponent implements OnInit {
+  pendingTodos$: Observable<CombinedTodo[]> = new Observable<CombinedTodo[]>(); // Inizializzazione
 
   constructor(private combinedService: CombinedService) {}
 
   ngOnInit(): void {
-    this.completedTodos$ = this.combinedService.getCombinedTodos().pipe(
-      map((todos: CombinedTodo[]) => todos.filter(todo => todo.completed))
+    this.pendingTodos$ = this.combinedService.getCombinedTodos().pipe(
+      map((todos: CombinedTodo[]) => todos.filter(todo => !todo.completed))
     );
   }
 
@@ -24,5 +24,5 @@ export class CompletedTodosComponent implements OnInit {
     const status = event.target.checked;
     this.combinedService.updateTodoStatus(id, status);
   }
-  }
+}
 

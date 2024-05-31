@@ -1,4 +1,4 @@
-<div *ngIf="todos$ | async as todos">
+<div *ngIf="pendingTodos$ | async as todos">
   <div *ngFor="let todo of todos" [ngClass]="{'completed-true': todo.completed, 'completed-false': !todo.completed}">
     <div [ngClass]="{'completed': todo.completed}">
       <input type="checkbox" [checked]="todo.completed" (change)="updateTodoStatus(todo.id, $event)">
@@ -6,3 +6,4 @@
     </div>
   </div>
 </div>
+

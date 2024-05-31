@@ -25,4 +25,9 @@ export class UserListComponent implements OnInit {
   getTodosForUser(userId: number): Observable<CombinedTodo[]> {
     return this.combinedService.getCombinedTodosByUserId(userId);
   }
+
+  updateTodoStatus(id: number, event: any): void {
+    const status = event.target.checked;
+    this.combinedService.updateTodoStatus(id, status);
+  }
 }

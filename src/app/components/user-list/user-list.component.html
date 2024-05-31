@@ -1,8 +1,18 @@
-<div *ngFor="let user of users">
-  <h3>{{ user.firstName }} {{ user.lastName }}</h3>
-  <ul>
-    <li *ngFor="let todo of (getTodosForUser(user.id) | async)">
-      {{ todo.todo }}
-    </li>
-  </ul>
+<div class="card mb-3" *ngFor="let user of users">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img [src]="user.image" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h3 class="card-title">{{ user.firstName }} {{ user.lastName }}</h3>
+        <div *ngFor="let todo of (getTodosForUser(user.id) | async)">
+          <p class="card-text" [ngClass]="{'completed-true': todo.completed, 'completed-false': !todo.completed}">
+            <input type="checkbox" [checked]="todo.completed" (change)="updateTodoStatus(todo.id, $event)">
+            {{ todo.todo }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -10,6 +10,7 @@ import { NavbarComponent } from './components/navbar/navbar.component'; // Impor
 import { TodoService } from './services/todo.service';
 import { UserService } from './services/user.service';
 import { CombinedService } from './services/combined.service';
+import { PendingTodosComponent } from './components/pending-todos/pending-todos.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CombinedService } from './services/combined.service';
     TodoListComponent,
     CompletedTodosComponent,
     UserListComponent,
-    NavbarComponent // Dichiara il componente navbar
+    NavbarComponent,
+    PendingTodosComponent // Dichiara il componente navbar
   ],
   imports: [
     BrowserModule,

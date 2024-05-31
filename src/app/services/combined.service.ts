@@ -12,7 +12,6 @@ import { IUser } from '../models/i-user';
 })
 export class CombinedService {
 
-
   constructor(private todoService: TodoService, private userService: UserService) {}
 
   getCombinedTodos(): Observable<CombinedTodo[]> {

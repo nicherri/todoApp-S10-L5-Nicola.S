@@ -1,5 +1,6 @@
-<div *ngFor="let todo of completedTodos$ | async">
-  <div class="completed">
+<div *ngFor="let todo of completedTodos$ | async" [ngClass]="{'completed-true': todo.completed, 'completed-false': !todo.completed}">
+  <div>
+    <input type="checkbox" [checked]="todo.completed" (change)="updateTodoStatus(todo.id, $event)">
     <span>{{ todo.todo }}</span> - <strong>{{ todo.user.firstName }} {{ todo.user.lastName }}</strong>
   </div>
 </div>

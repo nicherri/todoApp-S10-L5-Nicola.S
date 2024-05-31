@@ -931,7 +931,7 @@ export class TodoService {
     const todo = this.todos.find(todo => todo.id === id);
     if (todo) {
       todo.completed = status;
-      this.todosSubject.next(this.todos);
+      this.todosSubject.next(this.todos); // Notifica le modifiche ai sottoscrittori
     }
   }
 }
