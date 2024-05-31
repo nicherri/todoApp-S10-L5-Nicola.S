@@ -7,9 +7,11 @@ import { SearchService } from '../../services/search.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
+  show:boolean = false;
   constructor(private searchService: SearchService) {}
 
   onSearch(term: string): void {
+    console.log('Search term:', term);
     this.searchService.setSearchTerm(term);
   }
 }

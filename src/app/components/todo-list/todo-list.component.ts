@@ -18,9 +18,16 @@ export class TodoListComponent implements OnInit {
 
   ngOnInit(): void {
     this.todos$ = this.searchService.searchTerm$.pipe(
-      switchMap(term => this.combinedService.getCombinedTodos().pipe(
-        map((todos: CombinedTodo[]) => this.getFilteredTodos(todos, term))
-      ))
+      switchMap(term => {
+        console.log('Search term in todo-list:', term); // Log del termine di ricerca
+        return this.combinedService.getCombinedTodos().pipe(
+          map((todos: CombinedTodo[]) => {
+            const filteredTodos = this.getFilteredTodos(todos, term);
+            console.log('Filtered todos:', filteredTodos); // Log dei TODO filtrati
+            return filteredTodos;
+          })
+        );
+      })
     );
   }
 
@@ -31,10 +38,13 @@ export class TodoListComponent implements OnInit {
 
   getFilteredTodos(todos: CombinedTodo[], term: string): CombinedTodo[] {
     if (!term) {
+      console.log('No search term provided, returning all todos.');
       return todos;
     }
-    return todos.filter(todo => {
+    const filtered = todos.filter(todo => {
       return `${todo.user.firstName} ${todo.user.lastName}`.toLowerCase().includes(term.toLowerCase());
     });
+    console.log('Filtered todos within getFilteredTodos:', filtered);
+    return filtered;
   }
 }

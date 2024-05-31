@@ -9,6 +9,7 @@ export class SearchService {
   searchTerm$: Observable<string> = this.searchTermSubject.asObservable();
 
   setSearchTerm(term: string): void {
+    console.log('Setting search term in SearchService:', term);
     this.searchTermSubject.next(term);
   }
 }
